@@ -2,27 +2,29 @@ var RFC4648 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
 var RFC4648_HEX = '0123456789ABCDEFGHIJKLMNOPQRSTUV'
 var CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
 
-module.exports = function base32Encode (buffer, variant) {
-  var alphabet, padding
+module.exports = function base32Encode (buffer, variant, options) {
+  options = options || {}
+  var alphabet, defaultPadding
 
   switch (variant) {
     case 'RFC3548':
     case 'RFC4648':
       alphabet = RFC4648
-      padding = true
+      defaultPadding = true
       break
     case 'RFC4648-HEX':
       alphabet = RFC4648_HEX
-      padding = true
+      defaultPadding = true
       break
     case 'Crockford':
       alphabet = CROCKFORD
-      padding = false
+      defaultPadding = false
       break
     default:
       throw new Error('Unknown base32 variant: ' + variant)
   }
 
+  var padding = (options.padding !== undefined ? options.padding : defaultPadding)
   var length = buffer.byteLength
   var view = new Uint8Array(buffer)
 

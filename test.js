@@ -65,6 +65,12 @@ var testCases = [
   ['Crockford', '666f6f626172', 'CSQPYRK1E8']
 ]
 
+// base32 encode with no options
 testCases.forEach(function (testCase) {
   assert.equal(base32Encode(hexToArrayBuffer(testCase[1]), testCase[0]), testCase[2])
+})
+
+// base32 encode with disabled padding option
+testCases.forEach(function (testCase) {
+  assert.equal(base32Encode(hexToArrayBuffer(testCase[1]), testCase[0], { padding: false }), testCase[2].replace(/=/g, ''))
 })
