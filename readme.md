@@ -20,16 +20,21 @@ console.log(base32Encode(buffer, 'Crockford'))
 console.log(base32Encode(buffer, 'RFC4648'))
 //=> ORSXG5A=
 
+console.log(base32Encode(buffer, 'RFC4648', { padding: false }))
+//=> ORSXG5A
+
 console.log(base32Encode(buffer, 'RFC4648-HEX'))
 //=> EHIN6T0=
 ```
 
 ## API
 
-### base32Encode(buffer, variant)
+### base32Encode(buffer, variant, options)
 
 - `buffer` &lt;ArrayBuffer&gt;
 - `variant` &lt;String&gt;
+- `options` &lt;Object&gt;
+  - `padding` &lt;Boolean&gt;
 
 Encode the data in `buffer`. `variant` should be one of the supported variants
 listed below.
@@ -38,6 +43,8 @@ listed below.
 - `'RFC4648'` - [Base32 from RFC4648](https://tools.ietf.org/html/rfc4648)
 - `'RFC4648-HEX'` - [base32hex from RFC4648](https://tools.ietf.org/html/rfc4648)
 - `'Crockford'` - [Crockford's Base32](http://www.crockford.com/wrmg/base32.html)
+
+Options may have a `padding` property which provides a way to disable the encoding padding (default behaviour)
 
 ## See also
 
