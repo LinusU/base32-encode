@@ -44,7 +44,7 @@ listed below.
 - `'RFC4648-HEX'` - [base32hex from RFC4648](https://tools.ietf.org/html/rfc4648)
 - `'Crockford'` - [Crockford's Base32](http://www.crockford.com/wrmg/base32.html)
 
-Options may have a `padding` property which provides a way to disable the encoding padding (default behaviour)
+Options may have a `padding` property which provides a way to forcefully enable or disable padding. The default behavior is to follow the default of the selected variant.
 
 ## See also
 
