@@ -6,6 +6,9 @@
   "scripts": {
     "test": "standard && node test"
   },
+  "dependencies": {
+    "to-data-view": "^1.1.0"
+  },
   "devDependencies": {
     "hex-to-array-buffer": "^0.1.0",
     "standard": "^8.0.0-beta.5"

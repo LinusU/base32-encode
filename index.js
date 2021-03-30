@@ -1,8 +1,10 @@
+var toDataView = require('to-data-view')
+
 var RFC4648 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
 var RFC4648_HEX = '0123456789ABCDEFGHIJKLMNOPQRSTUV'
 var CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
 
-module.exports = function base32Encode (buffer, variant, options) {
+module.exports = function base32Encode (data, variant, options) {
   options = options || {}
   var alphabet, defaultPadding
 
@@ -25,15 +27,14 @@ module.exports = function base32Encode (buffer, variant, options) {
   }
 
   var padding = (options.padding !== undefined ? options.padding : defaultPadding)
-  var length = buffer.byteLength
-  var view = new Uint8Array(buffer)
+  var view = toDataView(data)
 
   var bits = 0
   var value = 0
   var output = ''
 
-  for (var i = 0; i < length; i++) {
-    value = (value << 8) | view[i]
+  for (var i = 0; i < view.byteLength; i++) {
+    value = (value << 8) | view.getUint8(i)
     bits += 8
 
     while (bits >= 5) {

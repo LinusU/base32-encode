@@ -12,31 +12,31 @@ npm install --save base32-encode
 
 ```js
 const base32Encode = require('base32-encode')
-const { buffer } = new Uint8Array([0x74, 0x65, 0x73, 0x74])
+const data = new Uint8Array([0x74, 0x65, 0x73, 0x74])
 
-console.log(base32Encode(buffer, 'Crockford'))
+console.log(base32Encode(data, 'Crockford'))
 //=> EHJQ6X0
 
-console.log(base32Encode(buffer, 'RFC4648'))
+console.log(base32Encode(data, 'RFC4648'))
 //=> ORSXG5A=
 
-console.log(base32Encode(buffer, 'RFC4648', { padding: false }))
+console.log(base32Encode(data, 'RFC4648', { padding: false }))
 //=> ORSXG5A
 
-console.log(base32Encode(buffer, 'RFC4648-HEX'))
+console.log(base32Encode(data, 'RFC4648-HEX'))
 //=> EHIN6T0=
 ```
 
 ## API
 
-### base32Encode(buffer, variant, options)
+### base32Encode(data, variant, options)
 
-- `buffer` &lt;ArrayBuffer&gt;
+- `data` &lt;ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray&gt;
 - `variant` &lt;String&gt;
 - `options` &lt;Object&gt;
   - `padding` &lt;Boolean&gt;
 
-Encode the data in `buffer`. `variant` should be one of the supported variants
+Encode the data in `data`. `variant` should be one of the supported variants
 listed below.
 
 - `'RFC3548'` - Alias for `'RFC4648'`

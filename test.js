@@ -74,3 +74,7 @@ testCases.forEach(function (testCase) {
 testCases.forEach(function (testCase) {
   assert.equal(base32Encode(hexToArrayBuffer(testCase[1]), testCase[0], { padding: false }), testCase[2].replace(/=/g, ''))
 })
+
+assert.equal(base32Encode(new Int8Array([1, 2, 3, 4]), 'Crockford'), '0410610')
+assert.equal(base32Encode(new Uint8Array([1, 2, 3, 4]), 'Crockford'), '0410610')
+assert.equal(base32Encode(new Uint8ClampedArray([1, 2, 3, 4]), 'Crockford'), '0410610')
