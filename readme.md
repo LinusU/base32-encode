@@ -11,7 +11,7 @@ npm install --save base32-encode
 ## Usage
 
 ```js
-const base32Encode = require('base32-encode')
+import base32Encode from 'base32-encode'
 const data = new Uint8Array([0x74, 0x65, 0x73, 0x74])
 
 console.log(base32Encode(data, 'Crockford'))
