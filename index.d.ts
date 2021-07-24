@@ -19,5 +19,4 @@ declare namespace base32Encode {
  * @param variant
  * @param options
  */
-declare function base32Encode(data: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, variant: 'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford', options?: base32Encode.Options): string
-export = base32Encode
+export default function base32Encode(data: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, variant: 'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford', options?: base32Encode.Options): string

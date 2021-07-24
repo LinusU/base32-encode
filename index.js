@@ -1,12 +1,12 @@
-var toDataView = require('to-data-view')
+import toDataView from 'to-data-view'
 
-var RFC4648 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
-var RFC4648_HEX = '0123456789ABCDEFGHIJKLMNOPQRSTUV'
-var CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
+const RFC4648 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
+const RFC4648_HEX = '0123456789ABCDEFGHIJKLMNOPQRSTUV'
+const CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
 
-module.exports = function base32Encode (data, variant, options) {
+export default function base32Encode (data, variant, options) {
   options = options || {}
-  var alphabet, defaultPadding
+  let alphabet, defaultPadding
 
   switch (variant) {
     case 'RFC3548':
@@ -26,14 +26,14 @@ module.exports = function base32Encode (data, variant, options) {
       throw new Error('Unknown base32 variant: ' + variant)
   }
 
-  var padding = (options.padding !== undefined ? options.padding : defaultPadding)
-  var view = toDataView(data)
+  const padding = (options.padding !== undefined ? options.padding : defaultPadding)
+  const view = toDataView(data)
 
-  var bits = 0
-  var value = 0
-  var output = ''
+  let bits = 0
+  let value = 0
+  let output = ''
 
-  for (var i = 0; i < view.byteLength; i++) {
+  for (let i = 0; i < view.byteLength; i++) {
     value = (value << 8) | view.getUint8(i)
     bits += 8
 

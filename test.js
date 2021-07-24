@@ -1,8 +1,8 @@
-var assert = require('assert')
-var base32Encode = require('./')
-var hexToArrayBuffer = require('hex-to-array-buffer')
+import assert from 'node:assert'
+import hexToArrayBuffer from 'hex-to-array-buffer'
+import base32Encode from './index.js'
 
-var testCases = [
+const testCases = [
   // RFC 4648 - Test vectors
   ['RFC4648', '', ''],
   ['RFC4648', '66', 'MY======'],
