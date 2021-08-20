@@ -25,6 +25,9 @@ console.log(base32Encode(data, 'RFC4648', { padding: false }))
 
 console.log(base32Encode(data, 'RFC4648-HEX'))
 //=> EHIN6T0=
+
+console.log(base32Encode(new Uint8Array([0x74, 0x65, 0x73, 0x74]), 'Custom', { alphabet: 'abcdefghijklmnopqrstuvwxyz12345_' }))
+//=> orsxg4a
 ```
 
 ## API
@@ -35,6 +38,7 @@ console.log(base32Encode(data, 'RFC4648-HEX'))
 - `variant` (`'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford'`, required)
 - `options` (`object`, optional)
   - `padding` (`boolean`, optional) - If set, forcefully enable or disable padding. The default behavior is to follow the default of the selected variant.
+  - `alphabet` - If set, and the `Custom` variant is specified, the argument will be used as the encoding alphabet.
 - returns `string`
 
 Encode the data in `data` into a Base32 encoded string.

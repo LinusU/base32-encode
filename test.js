@@ -62,19 +62,50 @@ const testCases = [
   ['Crockford', '61', 'C4'],
   ['Crockford', '74657374', 'EHJQ6X0'],
   ['Crockford', '6c696e7573', 'DHMPWXBK'],
-  ['Crockford', '666f6f626172', 'CSQPYRK1E8']
+  ['Crockford', '666f6f626172', 'CSQPYRK1E8'],
+
+  // Custom
+  ['Custom', '', ''],
+  ['Custom', '66', 'my'],
+  ['Custom', '666f', 'mzxq'],
+  ['Custom', '666f6f', 'mzxw5'],
+  ['Custom', '666f6f62', 'mzxw5yq'],
+  ['Custom', '666f6f6261', 'mzxw5ytb'],
+  ['Custom', '666f6f626172', 'mzxw5ytboi'],
+  ['Custom', '73', 'om'],
+  ['Custom', 'f80c', '_aga'],
+  ['Custom', '6450', 'mria'],
+  ['Custom', 'cc91d0', 'zsi4a'],
+  ['Custom', '6c60c0', 'nrqma'],
+  ['Custom', '4f6a23', 'j4vcg'],
+  ['Custom', '88b44f18', 'rc1e5ga'],
+  ['Custom', '90bad04714', 'sc4naryu'],
+  ['Custom', '4995d9811f37f59797d7c3b9b9e5325aa78277415f70f4accf588c', 'jgk4tai_g_1zpf5xyo32tzjslktye41bl4ypjlgplcga'],
+  ['Custom', '24f0812ca8eed58374c11a7008f0b262698b72fd2792709208eaacb2', 'etyiclfi42kyg4gbdjyar3fsmjuyw3x4e5jhbeqi4kwle'],
+  ['Custom', 'd70692543810d4bf50d81cf44a55801a557a388a341367c7ea077ca306', '13djevbycdkl5ugydt1euvmadjkxuoekgqjwpr_ka45kgbq'],
+  ['Custom', '6e08a89ca36b677ff8fe99e68a1241c8d8cef2570a5f60b6417d2538b30c', 'nyekrhfdnntx_5h5thtiuesbzdmm43sxbjpwbnsbpustrmym'],
+  ['Custom', 'f2fc2319bd29457ccd01e8e194ee9bd7e97298b6610df4ab0f3d5baa0b2d7ccf69829edb74edef', '5l5cggn4ffcxztib4dqzj2u21_uxfgfwmeg_jkyphvn1ucznpthwtau52n1o22y']
 ]
 
 // base32 encode with no options
 testCases.forEach(function (testCase) {
+  if (testCase[0] === 'Custom') return
   assert.equal(base32Encode(hexToArrayBuffer(testCase[1]), testCase[0]), testCase[2])
 })
 
 // base32 encode with disabled padding option
 testCases.forEach(function (testCase) {
+  if (testCase[0] === 'Custom') return
   assert.equal(base32Encode(hexToArrayBuffer(testCase[1]), testCase[0], { padding: false }), testCase[2].replace(/=/g, ''))
+})
+
+// base32 encode with custom alphabet
+testCases.forEach(function (testCase) {
+  if (testCase[0] !== 'Custom') return
+  assert.equal(base32Encode(hexToArrayBuffer(testCase[1]), testCase[0], { alphabet: 'abcdefghijklmnopqrstuvwxyz12345_' }), testCase[2].replace(/=/g, ''))
 })
 
 assert.equal(base32Encode(new Int8Array([1, 2, 3, 4]), 'Crockford'), '0410610')
 assert.equal(base32Encode(new Uint8Array([1, 2, 3, 4]), 'Crockford'), '0410610')
 assert.equal(base32Encode(new Uint8ClampedArray([1, 2, 3, 4]), 'Crockford'), '0410610')
+assert.equal(base32Encode(new Uint8Array([0x74, 0x65, 0x73, 0x74]), 'Custom', { alphabet: 'abcdefghijklmnopqrstuvwxyz12345_' }), 'orsxg4a')
