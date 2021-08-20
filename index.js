@@ -22,6 +22,11 @@ export default function base32Encode (data, variant, options) {
       alphabet = CROCKFORD
       defaultPadding = false
       break
+    case 'Custom':
+      if (!options.alphabet) throw new Error('Custom variant requires `alphabet` set in options.')
+      alphabet = options.alphabet
+      defaultPadding = false
+      break
     default:
       throw new Error('Unknown base32 variant: ' + variant)
   }

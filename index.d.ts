@@ -1,7 +1,9 @@
 declare namespace base32Encode {
   interface Options {
     /** If set, forcefully enable or disable padding. The default behavior is to follow the default of the selected variant. */
-    padding?: boolean
+    padding?: boolean,
+    /** If set, and the `Custom` variant is specified, the argument will be used as the encoding alphabet. */
+    alphabet?: string,
   }
 }
 
@@ -19,4 +21,4 @@ declare namespace base32Encode {
  * @param variant
  * @param options
  */
-export default function base32Encode(data: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, variant: 'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford', options?: base32Encode.Options): string
+export default function base32Encode(data: ArrayBuffer | Int8Array | Uint8Array | Uint8ClampedArray, variant: 'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford' | 'Custom', options?: base32Encode.Options): string
