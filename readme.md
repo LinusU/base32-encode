@@ -5,7 +5,11 @@ Base32 encoder with support for multiple variants.
 ## Installation
 
 ```sh
-npm install --save base32-encode
+# ESM
+npm install --save base32-encode@2
+
+# CommonJS
+npm install --save base32-encode@1
 ```
 
 ## Usage
